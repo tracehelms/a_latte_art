@@ -3,16 +3,16 @@ defmodule ALatteArt.ShopController do
 
   def index(conn, _params) do
     shops = [
-      %{name: "The Laughing Goat", id: 1, location: "123, 456", src: "http://www.placecage.com/g/200/200"},
-      %{name: "Pekoe Sip House", id: 2, location: "123, 456", src: "http://www.placecage.com/g/200/200"},
-      %{name: "Ozo Coffee", id: 3, location: "123, 456", src: "http://www.placecage.com/g/200/200"},
-      %{name: "Boxcar Coffee Roasters", id: 4, location: "123, 456", src: "http://www.placecage.com/g/200/200"},
-      %{name: "Red Rock Coffeehouse", id: 5, location: "123, 456", src: "http://www.placecage.com/g/200/200"},
-      %{name: "The Cup", id: 6, location: "123, 456", src: "http://www.placecage.com/g/200/200"},
-      %{name: "Flatiron Coffee", id: 7, location: "123, 456", src: "http://www.placecage.com/g/200/200"},
-      %{name: "Village Coffeeshop", id: 8, location: "123, 456", src: "http://www.placecage.com/g/200/200"},
-      %{name: "The Unseen Bean", id: 9, location: "123, 456", src: "http://www.placecage.com/g/200/200"},
-      %{name: "Market Brewers Coffee", id: 10, location: "123, 456", src: "http://www.placecage.com/g/200/200"}
+      %{name: "The Laughing Goat", id: 1, location: "123, 456", src: "http://www.placecage.com/g/220/220"},
+      %{name: "Pekoe Sip House", id: 2, location: "123, 456", src: "http://www.placecage.com/g/100/100"},
+      %{name: "Ozo Coffee", id: 3, location: "123, 456", src: "http://www.placecage.com/g/400/400"},
+      %{name: "Boxcar Coffee Roasters", id: 4, location: "123, 456", src: "http://www.placecage.com/g/100/300"},
+      %{name: "Red Rock Coffeehouse", id: 5, location: "123, 456", src: "http://www.placecage.com/g/400/300"},
+      %{name: "The Cup", id: 6, location: "123, 456", src: "http://www.placecage.com/g/200/280"},
+      %{name: "Flatiron Coffee", id: 7, location: "123, 456", src: "http://www.placecage.com/g/200/100"},
+      %{name: "Village Coffeeshop", id: 8, location: "123, 456", src: "http://www.placecage.com/g/230/200"},
+      %{name: "The Unseen Bean", id: 9, location: "123, 456", src: "http://www.placecage.com/g/200/400"},
+      %{name: "Market Brewers Coffee", id: 10, location: "123, 456", src: "http://www.placecage.com/g/300/200"}
     ]
     json conn, shops
   end
