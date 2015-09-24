@@ -25,6 +25,6 @@ defmodule ALatteArt.Router do
 
     # get "/", HomeController, :index
     # get "/shops", ShopController, :index
-    # get "/shops/:id", ShopController, :show
+    get "/shops/:id", ShopController, :show
   end
 end
