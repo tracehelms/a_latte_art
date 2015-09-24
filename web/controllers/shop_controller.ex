@@ -5,8 +5,12 @@ defmodule ALatteArt.ShopController do
   alias ALatteArt.Artwork
 
   def index(conn, _params) do
-    shops = Repo.all(Shop)
-    json conn, shops: shops
+    shops = [
+      %{name: "The Laughing Goat", id: 1, location: "123, 456", url: "/shops/1/"},
+      %{name: "Pekoe Sip House", id: 2, location: "123, 456", url: "/shops/2/"},
+      %{name: "Ozo Coffee", id: 3, location: "123, 456", url: "/shops/3/"}
+    ]
+    json conn, shops
   end
 
   def show(conn, %{"id" => id}) do
