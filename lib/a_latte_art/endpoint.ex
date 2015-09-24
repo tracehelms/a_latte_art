@@ -35,5 +35,6 @@ defmodule ALatteArt.Endpoint do
     key: "_a_latte_art_key",
     signing_salt: "xo6HlT1X"
 
+  plug CORSPlug
   plug ALatteArt.Router
 end

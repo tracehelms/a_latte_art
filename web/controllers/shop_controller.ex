@@ -1,8 +1,5 @@
 defmodule ALatteArt.ShopController do
   use ALatteArt.Web, :controller
-  alias ALatteArt.Repo
-  alias ALatteArt.Shop
-  alias ALatteArt.Artwork
 
   def index(conn, _params) do
     shops = [
