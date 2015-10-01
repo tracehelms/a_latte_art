@@ -1,6 +1,5 @@
 defmodule ALatteArt.ShopController do
   use ALatteArt.Web, :controller
-
   alias ALatteArt.Shop
 
   plug :scrub_params, "shop" when action in [:create, :update]
