@@ -10,8 +10,8 @@ defmodule ALatteArt.Shop do
     timestamps
   end
 
-  @required_fields ~w(name address website phone)
-  @optional_fields ~w()
+  @required_fields ~w(name address)
+  @optional_fields ~w(website phone)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
