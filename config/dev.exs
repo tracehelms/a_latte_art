@@ -12,7 +12,7 @@ config :a_latte_art, ALatteArt.Endpoint,
   code_reloader: true,
   cache_static_lookup: false,
   check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]]
+  watchers: []
 
 # Watch static and templates for browser reloading.
 config :a_latte_art, ALatteArt.Endpoint,
