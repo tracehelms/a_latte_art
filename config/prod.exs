@@ -56,10 +56,10 @@ config :logger, level: :info
 #     config :a_latte_art, ALatteArt.Endpoint, server: true
 #
 
-config :hello_phoenix, HelloPhoenix.Endpoint,
+config :a_latte_art, ALatteArt.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
-config :hello_phoenix, HelloPhoenix.Repo,
+config :a_latte_art, ALatteArt.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: 20
