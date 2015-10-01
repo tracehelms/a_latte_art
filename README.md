@@ -1,25 +1,25 @@
 # ALatteArt
 
-To start your Phoenix app:
+## Up & Running (Backend)
 
-  1. Install dependencies with `mix deps.get`
-  2. Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  3. Start Phoenix endpoint with `mix phoenix.server`
+### Prequisites
+1. Install Elixir `brew install elixir`
+2. [Install Phoenix](http://www.phoenixframework.org/docs/installation)
+  - If you get a permissions error when creating the database, run `createuser -s postgres` and retry
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+### Seeding Data
+1. Make sure you've migrated your database `mix ecto.migrate`
+2. Run `mix run priv/repo/seeds.ex`
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+### Running The Server
+1. Start the server `mix phoenix.server`
+2. Browse to [http://localhost:4000/api/shops/](http://localhost:4000/api/shops/) to make sure you get JSON data
 
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: http://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+### Testing
+1. Run `mix test`
 
 
-## Data
+## Data Format (here for reference only....should soon be deleted and replaced with another documentation method)
 {
  id: 1,
  name: 'Laughing Goat',

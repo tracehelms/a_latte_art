@@ -1,87 +1,57 @@
 defmodule ALatteArt.ShopController do
   use ALatteArt.Web, :controller
 
+  alias ALatteArt.Shop
+
+  plug :scrub_params, "shop" when action in [:create, :update]
+
   def index(conn, _params) do
-    shops = [
-      %{name: "The Laughing Goat", id: 1, location: "123, 456", src: "http://www.placecage.com/g/220/220"},
-      %{name: "Pekoe Sip House", id: 2, location: "123, 456", src: "http://www.placecage.com/g/100/100"},
-      %{name: "Ozo Coffee", id: 3, location: "123, 456", src: "http://www.placecage.com/g/400/400"},
-      %{name: "Boxcar Coffee Roasters", id: 4, location: "123, 456", src: "http://www.placecage.com/g/100/300"},
-      %{name: "Red Rock Coffeehouse", id: 5, location: "123, 456", src: "http://www.placecage.com/g/400/300"},
-      %{name: "The Cup", id: 6, location: "123, 456", src: "http://www.placecage.com/g/200/280"},
-      %{name: "Flatiron Coffee", id: 7, location: "123, 456", src: "http://www.placecage.com/g/200/100"},
-      %{name: "Village Coffeeshop", id: 8, location: "123, 456", src: "http://www.placecage.com/g/230/200"},
-      %{name: "The Unseen Bean", id: 9, location: "123, 456", src: "http://www.placecage.com/g/200/400"},
-      %{name: "Market Brewers Coffee", id: 10, location: "123, 456", src: "http://www.placecage.com/g/300/200"}
-    ]
-    json conn, shops
+    shops = Repo.all(Shop)
+    render(conn, "index.json", shops: shops)
+  end
+
+  def create(conn, %{"shop" => shop_params}) do
+    changeset = Shop.changeset(%Shop{}, shop_params)
+
+    case Repo.insert(changeset) do
+      {:ok, shop} ->
+        conn
+        |> put_status(:created)
+        |> put_resp_header("location", shop_path(conn, :show, shop))
+        |> render("show.json", shop: shop)
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(ALatteArt.ChangesetView, "error.json", changeset: changeset)
+    end
   end
 
   def show(conn, %{"id" => id}) do
-    case id do
-      "1" ->
-        results = %{
-          name: "The Laughing Goat",
-          id: 1,
-          location: "123, 456",
-          artwork: [
-            %{src: "http://fillmurray.com/500/500", title: "A Latte Murray", price: "$24.99", artist_id: 1, shop_id: 1},
-            %{src: "http://fillmurray.com/600/600", title: "A Latte Murray", price: "$39.99", artist_id: 2, shop_id: 1},
-            %{src: "http://fillmurray.com/700/700", title: "A Latte Murray", price: "$99.99", artist_id: 3, shop_id: 1},
-            %{src: "http://fillmurray.com/800/800", title: "A Latte Murray", price: "$124.99", artist_id: 1, shop_id: 1},
-            %{src: "http://fillmurray.com/500/500", title: "A Latte Murray", price: "$24.99", artist_id: 1, shop_id: 1},
-            %{src: "http://fillmurray.com/600/600", title: "A Latte Murray", price: "$39.99", artist_id: 2, shop_id: 1},
-            %{src: "http://fillmurray.com/800/300", title: "A Latte Murray", price: "$99.99", artist_id: 3, shop_id: 1},
-            %{src: "http://fillmurray.com/800/200", title: "A Latte Murray", price: "$124.99", artist_id: 1, shop_id: 1},
-            %{src: "http://fillmurray.com/700/500", title: "A Latte Murray", price: "$24.99", artist_id: 1, shop_id: 1},
-            %{src: "http://fillmurray.com/600/600", title: "A Latte Murray", price: "$39.99", artist_id: 2, shop_id: 1},
-            %{src: "http://fillmurray.com/700/400", title: "A Latte Murray", price: "$99.99", artist_id: 3, shop_id: 1},
-            %{src: "http://fillmurray.com/800/800", title: "A Latte Murray", price: "$124.99", artist_id: 1, shop_id: 1}
-          ]
-        }
-      "2" ->
-        results = %{
-          name: "Pekoe Sip House",
-          id: 2,
-          location: "123, 456",
-          url: "/shops/2/",
-          artwork: [
-            %{src: "http://fillmurray.com/500/500", title: "A Latte Murray", price: "$24.99", artist_id: 1, shop_id: 2},
-            %{src: "http://fillmurray.com/600/600", title: "A Latte Murray", price: "$39.99", artist_id: 3, shop_id: 2},
-            %{src: "http://fillmurray.com/800/800", title: "A Latte Murray", price: "$124.99", artist_id: 1, shop_id: 2},
-            %{src: "http://fillmurray.com/500/500", title: "A Latte Murray", price: "$24.99", artist_id: 1, shop_id: 2},
-            %{src: "http://fillmurray.com/600/600", title: "A Latte Murray", price: "$39.99", artist_id: 3, shop_id: 2},
-            %{src: "http://fillmurray.com/800/800", title: "A Latte Murray", price: "$124.99", artist_id: 1, shop_id: 2},
-            %{src: "http://fillmurray.com/500/500", title: "A Latte Murray", price: "$24.99", artist_id: 1, shop_id: 2},
-            %{src: "http://fillmurray.com/900/100", title: "A Latte Murray", price: "$39.99", artist_id: 3, shop_id: 2},
-            %{src: "http://fillmurray.com/800/100", title: "A Latte Murray", price: "$124.99", artist_id: 1, shop_id: 2},
-            %{src: "http://fillmurray.com/500/200", title: "A Latte Murray", price: "$24.99", artist_id: 1, shop_id: 2},
-            %{src: "http://fillmurray.com/600/600", title: "A Latte Murray", price: "$39.99", artist_id: 3, shop_id: 2},
-            %{src: "http://fillmurray.com/800/700", title: "A Latte Murray", price: "$124.99", artist_id: 1, shop_id: 2},
-          ]
-        }
-      "3" ->
-        results = %{
-          name: "Ozo Coffee",
-          id: 3,
-          location: "123, 456",
-          url: "/shops/3/",
-          artwork: [
-            %{src: "http://fillmurray.com/600/600", title: "A Latte Murray", price: "$39.99", artist_id: 2, shop_id: 3},
-            %{src: "http://fillmurray.com/700/600", title: "A Latte Murray", price: "$99.99", artist_id: 3, shop_id: 3},
-            %{src: "http://fillmurray.com/800/800", title: "A Latte Murray", price: "$124.99", artist_id: 1, shop_id: 3},
-            %{src: "http://fillmurray.com/900/600", title: "A Latte Murray", price: "$39.99", artist_id: 2, shop_id: 3},
-            %{src: "http://fillmurray.com/700/900", title: "A Latte Murray", price: "$99.99", artist_id: 3, shop_id: 3},
-            %{src: "http://fillmurray.com/700/800", title: "A Latte Murray", price: "$124.99", artist_id: 1, shop_id: 3},
-            %{src: "http://fillmurray.com/600/200", title: "A Latte Murray", price: "$39.99", artist_id: 2, shop_id: 3},
-            %{src: "http://fillmurray.com/700/700", title: "A Latte Murray", price: "$99.99", artist_id: 3, shop_id: 3},
-            %{src: "http://fillmurray.com/400/200", title: "A Latte Murray", price: "$124.99", artist_id: 1, shop_id: 3},
-            %{src: "http://fillmurray.com/600/600", title: "A Latte Murray", price: "$39.99", artist_id: 2, shop_id: 3},
-            %{src: "http://fillmurray.com/700/300", title: "A Latte Murray", price: "$99.99", artist_id: 3, shop_id: 3},
-            %{src: "http://fillmurray.com/400/800", title: "A Latte Murray", price: "$124.99", artist_id: 1, shop_id: 3}
-          ]
-        }
+    shop = Repo.get!(Shop, id)
+    render conn, "show.json", shop: shop
+  end
+
+  def update(conn, %{"id" => id, "shop" => shop_params}) do
+    shop = Repo.get!(Shop, id)
+    changeset = Shop.changeset(shop, shop_params)
+
+    case Repo.update(changeset) do
+      {:ok, shop} ->
+        render(conn, "show.json", shop: shop)
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(ALatteArt.ChangesetView, "error.json", changeset: changeset)
     end
-    json conn, results
+  end
+
+  def delete(conn, %{"id" => id}) do
+    shop = Repo.get!(Shop, id)
+
+    # Here we use delete! (with a bang) because we expect
+    # it to always work (and if it does not, it will raise).
+    Repo.delete!(shop)
+
+    send_resp(conn, :no_content, "")
   end
 end

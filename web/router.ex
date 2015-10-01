@@ -24,7 +24,6 @@ defmodule ALatteArt.Router do
     pipe_through :api
 
     # get "/", HomeController, :index
-    get "/shops", ShopController, :index
-    get "/shops/:id", ShopController, :show
+    resources "/shops", ShopController
   end
 end
