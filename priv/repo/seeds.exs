@@ -12,8 +12,8 @@
 
 shops = [
   %{name: "The Laughing Goat", id: 1, address: "1709 Pearl St, Boulder, CO 80302", website: "http://example.com/laughing_goat", phone: "1234567890"},
-  %{name: "Pekoe Sip House", id: 2, address: "2500 30th St #100, Boulder, CO 80301", website: "http://example.com/laughing_goat", phone: "1234567890"},
-  %{name: "Ozo Coffee", id: 3, address: "1015 Pearl St, Boulder, CO 80302", website: "http://example.com/laughing_goat", phone: "1234567890"}
+  %{name: "Pekoe Sip House", id: 2, address: "2500 30th St #100, Boulder, CO 80301", website: "http://example.com/pekoe_sip_house", phone: "1234567890"},
+  %{name: "Ozo Coffee", id: 3, address: "1015 Pearl St, Boulder, CO 80302", website: "http://example.com/ozo_coffee", phone: "1234567890"}
 ]
 
 # artists = [
