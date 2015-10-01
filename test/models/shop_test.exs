@@ -15,4 +15,14 @@ defmodule ALatteArt.ShopTest do
     changeset = Shop.changeset(%Shop{}, @invalid_attrs)
     refute changeset.valid?
   end
+
+  test "name must be at least 3 characters" do
+    changeset = Shop.changeset(%Shop{}, %{address: "some content", name: "ab", phone: "some content", website: "some content"})
+    refute changeset.valid?
+  end
+
+  test "address must be at least 3 characters" do
+    changeset = Shop.changeset(%Shop{}, %{address: "ab", name: "some content", phone: "some content", website: "some content"})
+    refute changeset.valid?
+  end
 end

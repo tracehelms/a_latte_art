@@ -22,5 +22,7 @@ defmodule ALatteArt.Shop do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_length(:name, min: 3)
+    |> validate_length(:address, min: 3)
   end
 end
