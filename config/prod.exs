@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :a_latte_art, ALatteArt.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [scheme: "https", host: "alatteart.heroku.com", port: 443],
+  url: [host: "alatteart.herokuapp.com", port: 80],
   force_ssl: [rewrite_on: [:x_forwarded_proto]]
 
 # Do not print debug messages in production
